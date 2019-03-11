@@ -3,11 +3,11 @@ const localStrategy = require('passport-local').Strategy;
 const User = require('../app/models/users');
 
 module.exports = function (passport) {
-    passport.serializeUser(function (user, done) { // This function tells passport how to get information from a user object and stored it in a session
+    passport.serializeUser(function (user, done) {
         done(null, user.id)
     })
  
-    passport.deserializeUser(function (id, done) { // This function take that user information and turn it back into a user object
+    passport.deserializeUser(function (id, done) {
         User.findById(id, function (err, user) {
             done(err, user)
         });
